@@ -20,3 +20,18 @@ Feature: Create an Order through the TMS Application as a Driver.
       | OrderId 4th | Product Order 10114 | SIM001 - Simone Sims | 000001 - Zinja Mguni | Product | Order Successfully Created 04 | DeliveryType | 30       | 00:00    |
       | OrderId 5th | Product Order 10115 | SIM001 - Simone Sims | 000001 - Zinja Mguni | Product | Order Successfully Created 05 | DeliveryType | 1        | 00:00    |
       | OrderId 6th | Product Order 10117 | SIM001 - Simone Sims | 000001 - Zinja Mguni | Product | Order Successfully Created 06 | DeliveryType | 5        | 00:00    |
+
+
+
+  Scenario: As a user, I want to add a new contract so that it can be managed and tracked in the system.
+    Given I am on the "Contracts" page
+    When I click the "Add Contract" button
+    And I fill in the contract details:
+      | Field         | Value               |
+      | Contract Name | Service Agreement A |
+      | Start Date    | 2024-01-01          |
+      | End Date      | 2025-01-01          |
+      | Amount        | 5000                |
+    And I click the "Save" button
+    Then I should see a confirmation message "Contract has been successfully added"
+    And the contract "Service Agreement A" should appear in the contract list
