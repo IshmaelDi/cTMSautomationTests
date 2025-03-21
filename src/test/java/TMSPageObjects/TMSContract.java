@@ -43,8 +43,11 @@ public class TMSContract extends PageObject {
 
     // Contract Methods
 
-    public  void ClickContract() {
-        $(ContractXpath).click();
+   @Step("ClickContract")
+    public  void Contract() {
+       WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+       WebElement Contract = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ContractXpath)));
+       Contract.click();
     }
     public  void ClickAddContract() {
         $(AddContractXpath).click();

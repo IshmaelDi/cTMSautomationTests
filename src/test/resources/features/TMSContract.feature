@@ -3,8 +3,10 @@ Feature: Add Contract
   As a user, I want to add a new contract so that it can be managed and tracked in the system.
 
   Scenario Outline: Successfully add a new contract
-    Given I am on the "Contracts" page
-    When I click the "Add Contract" button
+    Given User has loged In
+    And User click Contract Contacts on dashboard
+
+    When I click the Add Contract button
     And I fill in the contract details '<Contract Name>', '<Delivery Type>','<Quantity>'.
     And Add '<Starts On>','<End On>','<Number of Loads>','<Average Load>','<Trips Required>'.
     And Add '<Reference Number>','<Contract Currency>','<Contract Value>','<Notes>'.
