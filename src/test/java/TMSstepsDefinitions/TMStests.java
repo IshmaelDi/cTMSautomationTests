@@ -22,7 +22,7 @@ public class TMStests extends PageObject{
     public void user_logs_into_tms_website() {
        tmsPage.LogIn("ishmael.direro@korridor.com", "Ish@cyest#982");
        tmsPage.RememberMe();
-       tmsPage.Click();
+       tmsPage.ClickLogin();
     }
     @Given("Redirected to dashboard to create order")
     public void redirected_to_dashboard_to_create_order() throws InterruptedException {

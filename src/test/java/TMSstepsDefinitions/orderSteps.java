@@ -20,7 +20,7 @@ public class orderSteps extends PageObject {
         tmsPage.TMSWebsite();
         tmsPage.LogIn("ishmael.direro@korridor.com", "Ish@cyest#982");
         tmsPage.RememberMe();
-        tmsPage.Click();
+        tmsPage.ClickLogin();
     }
     @And("User navigates to the Dashboard page")
     public void user_navigates_to_the_Dashboard_page() throws InterruptedException {

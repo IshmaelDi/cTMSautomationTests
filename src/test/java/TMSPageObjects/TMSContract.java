@@ -13,16 +13,20 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static net.serenitybdd.core.Serenity.getDriver;
+
 public class TMSContract extends PageObject {
 
 
 
+    // Landing Page Elements
+    String ContractTenantXpath = "//select[@name='tenantId']";
+
+    // Dashboard Buttons Elements
     String ContractXpath = "(//span[normalize-space()='Contracts'])[1]";
     String AddContractXpath = "(//a[normalize-space()='Add Contract'])[1]";
 
-
     // Contract Details
-
     String NameXpath = "(//input[@id='name'])[1]";
     String DeliveryXpath = "(//select[@title='DeliveryType'])[1]";
     String StartOnXpath = "(//input[@id='StartsOn'])[1]";
@@ -43,30 +47,49 @@ public class TMSContract extends PageObject {
 
     // Contract Methods
 
-    public  void ClickContract() {
-        $(ContractXpath).click();
-    }
-    public  void ClickAddContract() {
-        $(AddContractXpath).click();
-    }
 
+    @Step("User select Demo on Tenant")
+    public void SelectDemo()  {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+        WebElement demo = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ContractTenantXpath)));
+        Select selectObject = new Select(demo);
+        selectObject.selectByValue("1");
+    }
+    @Step("User Click Contract Button ")
+    public  void Contract() {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+        WebElement Contract = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ContractXpath)));
+        Contract.click();
+    }
+    @Step("User click Add Contract Button")
+    public  void AddContract() {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+        WebElement AddContract = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(AddContractXpath)));
+        AddContract.click();
+    }
     // Add Contract Details
 
-    public  void EnterName(String s) {
-        $(NameXpath).sendKeys("Contract A");
+    @Step("User Captures Contract Details")
+    public  void Contractame(String s) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+        WebElement ContractName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(NameXpath)));
+        ContractName.sendKeys("Contract A");
     }
-    public  void SelectDelivery(String s) {
+    @Step("User select Delivery Type")
+    public  void Delivery(String s) {
         //$(DeliveryXpath).click();
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
         WebElement delivery01 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(DeliveryXpath)));
         Select selectObject = new Select(delivery01);
         selectObject.selectByValue("1");
     }
+
+    @Step("User EnterStartOn Date")
     public  void EnterStartOn(String s) {
-        $(StartOnXpath).sendKeys("2025-03-09");
+        $(StartOnXpath).sendKeys("2025-03-21");
     }
     public  void EnterEndOn(String s) {
-        $(EndOnXpath).sendKeys("2025-03-09");
+        $(EndOnXpath).sendKeys("2025-03-21");
     }
     public  void EnterEvarageLoad(String s) {
         $(EvarageLoadXpath).sendKeys("5");

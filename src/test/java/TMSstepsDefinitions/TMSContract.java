@@ -10,60 +10,63 @@ import net.serenitybdd.core.pages.PageObject;
 
 public class TMSContract extends PageObject {
 
+    // Add Annotation to reference TMS PageObjects
     @Steps
     TMSContract tmsContract;
+    @Steps
     TMSPage tmsPage;
 
-    @Given("I am on the {string} page")
-    public void iAmOnThePage(String arg0) {
-        tmsContract.iAmOnThePage(arg0);
+    // Add actual test implementation.
 
+    // Referencing Login Actions
+    @Given("User has successfully logged In with valid credentials")
+    public void user_has_successfully_logged_in_with_valid_credentials() {
+        tmsPage.TMSWebsite();
+        tmsPage.LogIn("ishmael.direro@korridor.com", "Ish@cyest#982");
+        tmsPage.RememberMe();
+        tmsPage.ClickLogin();
+        // tmsContract.tmsPage.ClickLogin();
+    }
+
+    @Then("User is on Landing to select {string}")
+    public void Tenant(String Tenant) {
+        tmsContract.Tenant(Tenant);
+    }
+
+    @And("User is directed to dashboard and click {string} Button")
+    public void Contract(String Contract) {
+        tmsContract.Contract(Contract);
+    }
+
+    @Then("User click the {string} button")
+    public void AddContract(String AddContract) {
+        tmsContract.AddContract(AddContract);
+    }
+
+    @Then("I fill in the contract details {string}, {string},{string}.")
+    public void contract_details(String ContractName, String DeliveryType, String Quantity) {
+        tmsContract.contract_details(ContractName, DeliveryType, Quantity);
 
 
     }
 
-    @When("I click the {string} button")
-    public void iClickTheButton(String arg0) {
-        tmsContract.iClickTheButton(arg0);
-
+    @And("AddONE {string},{string},{string},{string},{string}.")
+    public void addone(String StartsOnDate, String EndOnDate, String NumberofLoads, String AverageLoad, String TripsRequired) {
+        tmsContract.addone(StartsOnDate, EndOnDate, NumberofLoads, AverageLoad, TripsRequired);
     }
 
-    @And("I fill in the contract details {string}, {string},{string}.")
-    public void iFillInTheContractDetailsContractNameDeliveryTypeQuantity() {
-        tmsContract.iFillInTheContractDetailsContractNameDeliveryTypeQuantity();
-        tmsContract.iFillInTheContractDetailsContractNameDeliveryTypeQuantity();
-        tmsContract.iFillInTheContractDetailsContractNameDeliveryTypeQuantity();
+    @And("AddTWO {string},{string},{string},{string}.")
+    public void addtwoString (String ReferenceNumber, String ContractCurrency, String ContractValue, String Notes) {
+        tmsContract.addtwoString(ReferenceNumber, ContractCurrency, ContractValue, Notes);
     }
 
-    @And("Add {string},{string},{string},{string},{string}.")
-    public void addStartsOnEndOnNumberOfLoadsAverageLoadTripsRequired() {
-        tmsContract.addStartsOnEndOnNumberOfLoadsAverageLoadTripsRequired();
-        tmsContract.addStartsOnEndOnNumberOfLoadsAverageLoadTripsRequired();
-        tmsContract.addStartsOnEndOnNumberOfLoadsAverageLoadTripsRequired();
-        tmsContract.addStartsOnEndOnNumberOfLoadsAverageLoadTripsRequired();
-        tmsContract.addStartsOnEndOnNumberOfLoadsAverageLoadTripsRequired();
+    @And("AddTHREE {string},{string}, {string},{string}.")
+    public void addthree(String Customer, String PaymentTerm, String ProductDescription, String Route) {
+        tmsContract.addthree(Customer, PaymentTerm, ProductDescription, Route);
     }
 
-    @And("Add {string},{string},{string},{string}.")
-    public void addReferenceNumberContractCurrencyContractValueNotes() {
-        tmsContract.addReferenceNumberContractCurrencyContractValueNotes();
-        tmsContract.addReferenceNumberContractCurrencyContractValueNotes();
-        tmsContract.addReferenceNumberContractCurrencyContractValueNotes();
-        tmsContract.addReferenceNumberContractCurrencyContractValueNotes();
+    @Then("I click Contract Save button")
+    public void iClickContractSaveButton() {
+        tmsContract.iClickContractSaveButton();
     }
-
-    @And("Add {string},{string}, {string},{string}.")
-    public void addCustomerPaymentTermProductDescriptionRoute() {
-        tmsContract.addCustomerPaymentTermProductDescriptionRoute();
-        tmsContract.addCustomerPaymentTermProductDescriptionRoute();
-        tmsContract.addCustomerPaymentTermProductDescriptionRoute();
-        tmsContract.addCustomerPaymentTermProductDescriptionRoute();
-    }
-
-    @Then("I click {string} button")
-    public void iClickButton(String arg0) {
-        tmsContract.iClickTheButton(arg0);
-    }
-
-
 }
